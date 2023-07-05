@@ -4,9 +4,9 @@ export const Development = () => (
     <div className={style.development}>
         <ul className={style.list}>
             <li className={style.item}>Designer:
-                <a href='http://t.me/Mrshmallowww'>Anastasia Ilina</a></li>
+                <a href='http://t.me/Mrshmallowww' target='blank'>Anastasia Ilina</a></li>
             <li className={style.item}>Developer:
-                <a>Vera Deeva</a></li>
+                <a href="http://t.me/Vera_07_08" target='blank'>Vera Deeva</a></li>
         </ul>
     </div>
 )

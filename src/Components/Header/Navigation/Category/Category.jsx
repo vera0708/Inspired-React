@@ -1,25 +1,25 @@
 import { NavLink } from 'react-router-dom'
-import cn from 'classnames'
+//import { useLocation } from 'react-router-dom'
+// import cn from 'classnames';
 import style from './Category.module.scss'
 
 export const Category = ({ list }) => (
+    //   let location = useLocation();
+
     <ul className={style.category}>
         {list.map(item => (
-            //                         {item.categories.map(category => (
-            //                             <li key={item.categories.link}>
-            //                                 <NavLink to={`${item.link}/${item.categories.link}`}
-            //                                     className={style.link}>
-            //                                     {item.categories.title}
-            //                                 </NavLink>
-            //                             </li>
-            //                         ))}
-            <li key={item.categories.link} className={style.item}>
-                <NavLink
-                    className={({ isActive }) => cn(style.link, isActive && style.linkActive)}
-                    to={item.categories.link}>
-                    {item.categories.title}
-                </NavLink>
-            </li>
+            //  if (className={cn(style.link, isActive && style.linkActive)}) {
+            // ...
+            //  <NavLink to={`${location.pathname}/${category.link}`}
+            item.categories.map(category => (
+                <li key={item.categories.link}>
+                    <NavLink to={`${item.link}/${category.link}`}
+                        className={style.link}>
+                        {category.title}
+                    </NavLink>
+                </li>
+            ))
+            //  }
         ))}
     </ul>
 )
