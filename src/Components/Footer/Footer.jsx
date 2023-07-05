@@ -5,32 +5,8 @@ import { Contacts } from "./Contacts/Contacts.jsx";
 import { Copyright } from "./Copyright/copyright.jsx";
 import { Social } from './Social/Social';
 import { Container } from '../Layout/Container/Container';
-// import cn from 'classnames';
-// import { NavLink } from 'react-router-dom';
 
-
-// const list = [
-//     {
-//         link: 'women', title: 'Женщины', categories: [
-//             { link: 'bras', title: 'Бюсгалтеры' },
-//             { link: 'panties', title: 'Трусы' },
-//             { link: 'socks', title: 'Носки' },
-//             { link: 'bathrobes', title: 'Халаты' },
-//             { link: 'thermal', title: 'Термобельё' },
-//             { link: 'pijamas', title: 'Пижамы' },
-//         ]
-//     },
-//     {
-//         link: 'men', title: 'Мужчины', categories: [
-//             { link: 'panties', title: 'Трусы' },
-//             { link: 'socks', title: 'Носки' },
-//             { link: 'bathrobes', title: 'Халаты' },
-//             { link: 'thermal', title: 'Термобельё' },
-//         ]
-//     },
-// ]
-
-export const Footer = () => (
+export const Footer = ({ list }) => (
     <footer>
         <Container >
             <div className={style.container}>
@@ -58,7 +34,7 @@ export const Footer = () => (
                         ))}
                     </ul>
                 </div> */}
-                <Catalog />
+                <Catalog list={list} />
                 <Social />
                 <Contacts />
                 <Copyright />

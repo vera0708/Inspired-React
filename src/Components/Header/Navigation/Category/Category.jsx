@@ -2,22 +2,22 @@ import { NavLink } from 'react-router-dom'
 import cn from 'classnames'
 import style from './Category.module.scss'
 
-const list = [
-    { link: 'bras', title: 'Бюсгалтеры' },
-    { link: 'panties', title: 'Трусы' },
-    { link: 'socks', title: 'Носки' },
-    { link: 'bathrobes', title: 'Халаты' },
-    { link: 'thermal', title: 'Термобельё' },
-    { link: 'pijamas', title: 'Пижамы' },
-]
-
-export const Category = () => (
+export const Category = ({ list }) => (
     <ul className={style.category}>
         {list.map(item => (
-            <li key={item.link} className={style.item}>
+            //                         {item.categories.map(category => (
+            //                             <li key={item.categories.link}>
+            //                                 <NavLink to={`${item.link}/${item.categories.link}`}
+            //                                     className={style.link}>
+            //                                     {item.categories.title}
+            //                                 </NavLink>
+            //                             </li>
+            //                         ))}
+            <li key={item.categories.link} className={style.item}>
                 <NavLink
-                    className={({ isActive }) => cn(style.link, isActive && style.linkActive)} to={item.link}>
-                    {item.title}
+                    className={({ isActive }) => cn(style.link, isActive && style.linkActive)}
+                    to={item.categories.link}>
+                    {item.categories.title}
                 </NavLink>
             </li>
         ))}

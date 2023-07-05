@@ -2,28 +2,7 @@ import cn from 'classnames';
 import { NavLink } from 'react-router-dom';
 import style from './Catalog.module.scss';
 
-const list = [
-    {
-        link: 'women', title: 'Женщины', categories: [
-            { link: 'bras', title: 'Бюсгалтеры' },
-            { link: 'panties', title: 'Трусы' },
-            { link: 'socks', title: 'Носки' },
-            { link: 'bathrobes', title: 'Халаты' },
-            { link: 'thermal', title: 'Термобельё' },
-            { link: 'pijamas', title: 'Пижамы' },
-        ]
-    },
-    {
-        link: 'men', title: 'Мужчины', categories: [
-            { link: 'panties', title: 'Трусы' },
-            { link: 'socks', title: 'Носки' },
-            { link: 'bathrobes', title: 'Халаты' },
-            { link: 'thermal', title: 'Термобельё' },
-        ]
-    },
-]
-
-export const Catalog = () => (
+export const Catalog = ({ list }) => (
     <div className={style.category}>
         <h2 className={cn(style.title, style.categoryTitle)}>Каталог</h2>
         <ul className={style.list}>

@@ -25,6 +25,14 @@
     justify-content: flex-start;
   }
 }
+
+.list {
+  display: flex;
+  gap: 50px;
+  font-size: 14px;
+  line-height: 17px;
+}
+
 .link {
   position: relative;
   transition: color 0.3s ease-in-out;
@@ -53,6 +61,7 @@
 
   &Active {
     pointer-events: none;
+
     &::after {
       opacity: 1;
     }
