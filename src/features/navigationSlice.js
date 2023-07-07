@@ -31,12 +31,12 @@ const navigationSlice = createSlice({
             })
             .addCase(fetchNavigation.fulfilled, (state, action) => {
                 state.status = 'success';
-                state.categories = action.payload
-                state.genderList = Object.keys(action.payload)
+                state.categories = action.payload;
+                state.genderList = Object.keys(action.payload);
             })
             .addCase(fetchNavigation.rejected, (state, action) => {
                 state.status = 'Failed';
-                state.error = action.error.message
+                state.error = action.error.message;
             })
     }
 });

@@ -22,6 +22,14 @@ const list = [
             { link: 'thermal', title: 'Термобельё' },
         ]
     },
+    {
+        link: 'kids', title: 'Дети', categories: [
+            { link: 'panties', title: 'Трусы' },
+            { link: 'socks', title: 'Носки' },
+            { link: 'pijamas', title: 'Пижамы' },
+            { link: 'thermal', title: 'Термобельё' },
+        ]
+    },
 ]
 
 export const Root = () => (
