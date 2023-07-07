@@ -34,7 +34,7 @@ const list = [
 
 export const Root = () => (
     <>
-        <Header list={list} />
+        <Header />
         <Main>
             <Outlet />
         </Main>

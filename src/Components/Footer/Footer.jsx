@@ -6,7 +6,7 @@ import { Copyright } from "./Copyright/copyright.jsx";
 import { Social } from './Social/Social';
 import { Container } from '../Layout/Container/Container';
 
-export const Footer = ({ list }) => (
+export const Footer = () => (
     <footer>
         <Container >
             <div className={style.container}>
@@ -34,7 +34,7 @@ export const Footer = ({ list }) => (
                         ))}
                     </ul>
                 </div> */}
-                <Catalog list={list} />
+                <Catalog />
                 <Social />
                 <Contacts />
                 <Copyright />
