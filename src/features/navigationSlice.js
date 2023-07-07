@@ -29,12 +29,12 @@ const navigationSlice = createSlice({
                 state.status = 'loading';
             })
             .addCase(fetchNavigation.fulfilled, (state, action) => {
-                state.status = 'success';
+                state.status = 'successed';
                 state.categories = action.payload;
                 state.genderList = Object.keys(action.payload);
             })
             .addCase(fetchNavigation.rejected, (state, action) => {
-                state.status = 'Failed';
+                state.status = 'failed';
                 state.error = action.error.message;
             })
     }

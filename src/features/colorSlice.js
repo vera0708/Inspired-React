@@ -22,11 +22,11 @@ const colorSlice = createSlice({
                 state.status = 'loading';
             })
             .addCase(fetchColors.fulfilled, (state, action) => {
-                state.status = 'success';
+                state.status = 'successed';
                 state.colorList = action.payload;
             })
             .addCase(fetchColors.rejected, (state, action) => {
-                state.status = 'Failed';
+                state.status = 'failed';
                 state.error = action.error.message;
             })
     }

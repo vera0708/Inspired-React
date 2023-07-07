@@ -1,20 +1,34 @@
 import { useParams } from "react-router-dom"
 import { Container } from "../Layout/Container/Container";
-import { useState } from "react";
+import { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { fetchGoods } from "../../features/goodsSlice";
+import style from './MainPage.module.scss';
+import { Product } from "../Product/Product";
 
-export const MainPage = ({ startGender = 'women' }) => {
+export const MainPage = ({ gender = 'women' }) => {
     const { category } = useParams();
+    const dispatch = useDispatch();
+    const { goodsList } = useSelector(state => state.goods)
 
-    const [gender, setGender] = useState(startGender || 'women');
-    console.log('state MainPage: ', gender);
+    useEffect(() => {
+        dispatch(fetchGoods(gender))
+    }, [gender, dispatch])
 
     return (
-        <Container>
-            <div>MainPage {gender}</div>
-            {category && <p>Категория: {category}</p>}
-            <button onClick={() => { setGender('women') }}>Женское</button>
-            <button onClick={() => { setGender('men') }}>Мужское</button>
-            <button onClick={() => { setGender('kids') }}>Детское</button>
-        </Container>
+        <section className={style.goods}>
+            <Container>
+                <h2 className={style.title}>НОВИНКИ</h2>
+                <ul className={style.list}>
+                    {goodsList.map(item =>
+                    (<li key={item.id}>
+                        <Product  {...item} />
+                    </li>
+                    ))}
+                </ul>
+                {category && <p>Категория: {category}</p>}
+            </Container>
+        </section>
+
     )
 };
