@@ -10,30 +10,6 @@ export const Footer = () => (
     <footer>
         <Container >
             <div className={style.container}>
-                {/* <div className={style.category}>
-                    <h2 className={cn(style.title, style.categoryTitle)}>Каталаог</h2>
-                    <ul className={style.categoryList}>
-                        {list.map((item) => (
-                            <li key={item.link} className={style.categoryItem}>
-                                <h3 className={style.categorySubtitle}>
-                                    <NavLink to={item.link} className={style.link}>
-                                        {item.title}
-                                    </NavLink>
-                                </h3>
-                                <ul className={style.categorySublist}>
-                                    {item.categories.map(category => (
-                                        <li key={category.link}>
-                                            <NavLink to={`${item.link}/${category.link}`}
-                                                className={style.link}>
-                                                {category.title}
-                                            </NavLink>
-                                        </li>
-                                    ))}
-                                </ul>
-                            </li>
-                        ))}
-                    </ul>
-                </div> */}
                 <Catalog />
                 <Social />
                 <Contacts />
