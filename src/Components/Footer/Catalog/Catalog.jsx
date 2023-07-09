@@ -16,14 +16,14 @@ export const Catalog = () => {
                 {genderList.map((gender) => (
                     <li key={gender} className={style.item}>
                         <h3 className={style.subtitle}>
-                            <NavLink to={gender} className={style.link}>
+                            <NavLink to={`/catalog/${gender}`} className={style.link}>
                                 {categories[gender].title}
                             </NavLink>
                         </h3>
                         <ul className={style.sublist}>
                             {categories[gender].list.map(category => (
                                 <li key={category.slug}>
-                                    <NavLink to={`${[gender]}/${category.slug}`}
+                                    <NavLink to={`/catalog/${gender}/${category.slug}`}
                                         className={style.link}>
                                         {category.title}
                                     </NavLink>

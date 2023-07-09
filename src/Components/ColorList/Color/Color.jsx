@@ -1,23 +1,20 @@
-import { useRef } from 'react';
+// import { useRef } from 'react';
 // import { useEffect } from 'react';
+import cn from 'classnames';
 import style from './Color.module.scss';
 
 export const Color = ({ color, check }) => {
-    console.log('check:  ', check);
-    const activeElement = useRef(0);
+    // const colorRef = useRef(null);
 
-    const checkedCircle = () => {
-        console.log(activeElement.current)
-        // activeElement.current = activeElement.current.checked();
-
-    };
+    // useEffect(() => {
+    //     colorRef.current.style.setProperty('--data-color', color)
+    // }, [color]);
 
     return (
-        <button
-            // className={{check} => cn(style.color && style.colorCheck)}
-            className={style.color}
-            style={{ backgroundColor: `${color}` }}
-            onClick={checkedCircle}
-        ></button>
+        <li
+            // ref={colorRef}
+            className={cn(style.color, check ? style.colorCheck : '')}
+            style={{ '--data-color': color }}
+        ></li>
     )
 } 
