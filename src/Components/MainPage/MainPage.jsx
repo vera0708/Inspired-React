@@ -1,13 +1,16 @@
 import { useParams } from "react-router-dom"
 import { useEffect } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { fetchCategory, fetchGender } from "../../features/goodsSlice";
 import { setActiveGender } from "../../features/navigationSlice";
 import { Goods } from "../../Goods/Goods";
+import { Banner } from "../Banner/Banner";
 
 export const MainPage = () => {
     const { gender, category } = useParams();
     const dispatch = useDispatch();
+    const { activeGender, categories } = useSelector(state => state.navigation);
+    const genderData = categories[activeGender];
 
     useEffect(() => {
         dispatch(setActiveGender(gender))
@@ -29,7 +32,9 @@ export const MainPage = () => {
     return (
         <>
             <div></div>
-            <Goods category={category} />
+            <Banner data={genderData?.banner} />
+            <Goods categoryData={genderData?.list
+                .find(item => item.slug === category)} />
         </>
     )
 };

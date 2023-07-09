@@ -4,14 +4,16 @@ import style from './Goods.module.scss';
 import { Container } from "../Components/Layout/Container/Container";
 
 
-export const Goods = ({ category }) => {
+export const Goods = ({ categoryData }) => {
     const { goodsList } = useSelector(state => state.goods);
-    const { activeGender, categories } = useSelector(state => state.navigation);
+    // const { activeGender, categories } = useSelector(state => state.navigation);
 
-    const title = category
-        ? categories[activeGender]?.list
-            .find(item => item.slug === category).title
-        : 'Новинки';
+    // const title = category
+    //     ? categories[activeGender]?.list
+    //         .find(item => item.slug === category).title
+    //     : 'Новинки';
+
+    const title = categoryData?.title ?? 'Новинки';
 
     return (
         <section className={style.goods}>
