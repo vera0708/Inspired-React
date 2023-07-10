@@ -10,7 +10,7 @@ import { fetchColors } from "./features/colorSlice.js"
 const router = createBrowserRouter(
   createRoutesFromElements(
     <Route path="/" element={<Root />}>
-      <Route index element={<MainPage />} />
+      <Route index element={<MainPage gender='women' />} />
       <Route path='catalog/:gender/:category?' element={<MainPage />} />
       <Route path='*' element={<ErrorPage />} />
     </Route>

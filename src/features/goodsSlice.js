@@ -39,7 +39,7 @@ const goodsSlice = createSlice({
                 state.status = 'loading';
             })
             .addCase(fetchGender.fulfilled, (state, action) => {
-                state.status = 'success';
+                state.status = 'successed';
                 state.goodsList = action.payload;
             })
             .addCase(fetchGender.rejected, (state, action) => {
@@ -50,7 +50,7 @@ const goodsSlice = createSlice({
                 state.status = 'loading';
             })
             .addCase(fetchCategory.fulfilled, (state, action) => {
-                state.status = 'success';
+                state.status = 'successed';
                 state.goodsList = action.payload.goods;
                 state.page = action.payload.page;
                 state.pages = action.payload.pages;

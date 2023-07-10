@@ -31,7 +31,8 @@ export const MainPage = () => {
 
     return (
         <>
-            <div></div>
+            <div>
+            </div>
             <Banner data={genderData?.banner} />
             <Goods categoryData={genderData?.list
                 .find(item => item.slug === category)} />
