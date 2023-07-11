@@ -4,9 +4,7 @@ import { Color } from './Color/Color';
 import { ColorLabel } from './ColorLabel/ColorLabel';
 
 export const ColorList = ({ colors, selectedColor, handleColorChange }) => {
-    // console.log('colors: ', colors);
     const { colorList } = useSelector(state => state.color);
-    // console.log('colorList: ', colorList);
 
     return handleColorChange ? (
         <div className={style.colorList}>

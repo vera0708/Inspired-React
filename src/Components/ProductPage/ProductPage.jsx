@@ -9,6 +9,7 @@ import style from './ProductPage.module.scss';
 import cn from 'classnames';
 import { ReactComponent as Like } from '../../assets/heart.svg';
 import { Count } from '../Count/Count';
+import { ProductSize } from '../ProductSize/ProductSize';
 
 export const ProductPage = () => {
     const dispatch = useDispatch();
@@ -17,6 +18,15 @@ export const ProductPage = () => {
 
     const [count, setCount] = useState(1);
     const [selectedColor, setSelectedColor] = useState('');
+    const [selectedSize, setSelectedSize] = useState('');
+
+    const handleColorChange = e => {
+        setSelectedColor(e.target.value)
+    };
+
+    const handleSizeChange = e => {
+        setSelectedSize(e.target.value)
+    };
 
     const handleIncrement = () => {
         setCount((prevCount) => prevCount + 1)
@@ -26,9 +36,6 @@ export const ProductPage = () => {
         if (count > 1) {
             setCount((prevCount) => prevCount - 1)
         }
-    };
-    const handleColorChange = e => {
-        setSelectedColor(e.target.value)
     };
 
     useEffect(() => {
@@ -46,6 +53,7 @@ export const ProductPage = () => {
                         <span className={style.subtitle}>Артикул</span>
                         <span className={style.id}>{product.id}</span>
                     </div>
+
                     <div className={style.color}>
                         <p className={cn(style.subtitle, style.colorTitle)}>Цвет</p>
                         <ColorList
@@ -54,7 +62,20 @@ export const ProductPage = () => {
                             handleColorChange={handleColorChange}
                         />
                     </div>
-                    {/* <ProductSize size={ product.size} /> */}
+
+                    <div className={style.size}>
+                        <p className={style.subtitle}>Размер</p>
+                        <ProductSize
+                            size={product.size}
+                            selectedSize={selectedSize}
+                            handleSizeChange={handleSizeChange}
+                        />
+                    </div>
+
+                    <div className={style.description}>
+                        <p className={cn(style.subtitle, style.descriptionTitle)}>Описание</p>
+                        <span className={style.descriptionText}>{product.description}</span>
+                    </div>
 
                     <div className={style.control}>
                         <Count

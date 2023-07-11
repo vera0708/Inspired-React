@@ -6,7 +6,6 @@ import { useEffect, useState } from 'react';
 import { useMedia } from 'react-use';
 
 export const Banner = ({ data }) => {
-    console.log('data: ', data)
 
     const isMobile = useMedia('(max-width: 540px)');
     const isTablet = useMedia('(max-width: 768px)');
