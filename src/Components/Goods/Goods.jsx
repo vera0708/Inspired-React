@@ -1,7 +1,7 @@
-import { Product } from "../Components/Product/Product";
+import { Product } from "../Product/Product";
 import { useSelector } from "react-redux";
 import style from './Goods.module.scss';
-import { Container } from "../Components/Layout/Container/Container";
+import { Container } from "../Layout/Container/Container";
 
 
 export const Goods = ({ categoryData }) => {
