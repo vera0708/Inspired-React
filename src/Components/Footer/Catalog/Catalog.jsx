@@ -5,9 +5,6 @@ import { useSelector } from 'react-redux';
 
 export const Catalog = () => {
     const { genderList, categories } = useSelector(state => state.navigation);
-    console.log(genderList);
-    console.log(categories);
-
 
     return (
         <div className={style.category}>
