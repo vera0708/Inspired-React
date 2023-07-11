@@ -1,20 +1,20 @@
-// import { useRef } from 'react';
-// import { useEffect } from 'react';
+import { useRef } from 'react';
+import { useEffect } from 'react';
 import cn from 'classnames';
 import style from './Color.module.scss';
 
 export const Color = ({ color, check }) => {
-    // const colorRef = useRef(null);
+    const colorRef = useRef(null);
 
-    // useEffect(() => {
-    //     colorRef.current.style.setProperty('--data-color', color)
-    // }, [color]);
+    useEffect(() => {
+        colorRef.current.style.setProperty('--data-color', color)
+    }, [color]);
 
     return (
         <li
-            // ref={colorRef}
             className={cn(style.color, check ? style.colorCheck : '')}
-            style={{ '--data-color': color }}
+            ref={colorRef}
+        // style={{ '--data-color': color }}
         ></li>
     )
 } 
