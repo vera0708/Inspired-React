@@ -63,8 +63,8 @@ export const ProductPage = () => {
                         />
                     </div>
 
-                    <div className={style.size}>
-                        <p className={style.subtitle}>Размер</p>
+                    <div className={style.color}>
+                        <p className={cn(style.subtitle, style.descriptionTitle)}>Размер</p>
                         <ProductSize
                             size={product.size}
                             selectedSize={selectedSize}
