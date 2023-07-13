@@ -9,7 +9,7 @@ import style from './ProductPage.module.scss';
 import cn from 'classnames';
 import { ReactComponent as Like } from '../../assets/heart.svg';
 import { Count } from '../Count/Count';
-import { ProductSize } from '../ProductSize/ProductSize';
+import { ProductSize } from './ProductSize/ProductSize';
 
 export const ProductPage = () => {
     const dispatch = useDispatch();
@@ -63,14 +63,11 @@ export const ProductPage = () => {
                         />
                     </div>
 
-                    <div className={style.color}>
-                        <p className={cn(style.subtitle, style.descriptionTitle)}>Размер</p>
-                        <ProductSize
-                            size={product.size}
-                            selectedSize={selectedSize}
-                            handleSizeChange={handleSizeChange}
-                        />
-                    </div>
+                    <ProductSize
+                        size={product.size}
+                        selectedSize={selectedSize}
+                        handleSizeChange={handleSizeChange}
+                    />
 
                     <div className={style.description}>
                         <p className={cn(style.subtitle, style.descriptionTitle)}>Описание</p>
