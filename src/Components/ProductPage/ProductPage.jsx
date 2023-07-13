@@ -10,11 +10,14 @@ import cn from 'classnames';
 import { ReactComponent as Like } from '../../assets/heart.svg';
 import { Count } from '../Count/Count';
 import { ProductSize } from './ProductSize/ProductSize';
+import { Goods } from '../Goods/Goods';
+import { fetchCategory } from '../../features/goodsSlice';
 
 export const ProductPage = () => {
     const dispatch = useDispatch();
     const { id } = useParams();
     const { product } = useSelector(state => state.product);
+    const { gender, category } = product;
 
     const [count, setCount] = useState(1);
     const [selectedColor, setSelectedColor] = useState('');
@@ -42,59 +45,66 @@ export const ProductPage = () => {
         dispatch(fetchProduct(id))
     }, [id, dispatch]);
 
+    useEffect(() => {
+        dispatch(fetchCategory({ gender, category, count: 4, top: true, exclude: id }))
+    }, [gender, category, id, dispatch]);
+
     return (
-        <section className={style.card}>
-            <Container className={style.container}>
-                <img className={style.image} src={`${API_URL}${product.pic}`} alt={`${product.title} ${product.description}`} />
-                <form className={style.content}>
-                    <h2 className={style.title}>{product.title}</h2>
-                    <p className={style.price}>руб {product.price}</p>
-                    <div className={style.vendorCode}>
-                        <span className={style.subtitle}>Артикул</span>
-                        <span className={style.id}>{product.id}</span>
-                    </div>
+        <>
+            <section className={style.card}>
+                <Container className={style.container}>
+                    <img className={style.image} src={`${API_URL}${product.pic}`} alt={`${product.title} ${product.description}`} />
+                    <form className={style.content}>
+                        <h2 className={style.title}>{product.title}</h2>
+                        <p className={style.price}>руб {product.price}</p>
+                        <div className={style.vendorCode}>
+                            <span className={style.subtitle}>Артикул</span>
+                            <span className={style.id}>{product.id}</span>
+                        </div>
 
-                    <div className={style.color}>
-                        <p className={cn(style.subtitle, style.colorTitle)}>Цвет</p>
-                        <ColorList
-                            colors={product.colors}
-                            selectedColor={selectedColor}
-                            handleColorChange={handleColorChange}
-                        />
-                    </div>
+                        <div className={style.color}>
+                            <p className={cn(style.subtitle, style.colorTitle)}>Цвет</p>
+                            <ColorList
+                                colors={product.colors}
+                                selectedColor={selectedColor}
+                                handleColorChange={handleColorChange}
+                            />
+                        </div>
 
-                    <ProductSize
-                        size={product.size}
-                        selectedSize={selectedSize}
-                        handleSizeChange={handleSizeChange}
-                    />
-
-                    <div className={style.description}>
-                        <p className={cn(style.subtitle, style.descriptionTitle)}>Описание</p>
-                        <span className={style.descriptionText}>{product.description}</span>
-                    </div>
-
-                    <div className={style.control}>
-                        <Count
-                            className={style.count}
-                            count={count}
-                            handleIncrement={handleIncrement}
-                            handleDecrement={handleDecrement}
+                        <ProductSize
+                            size={product.size}
+                            selectedSize={selectedSize}
+                            handleSizeChange={handleSizeChange}
                         />
 
-                        <button className={style.addCart} type='submit'>
-                            В корзину
-                        </button>
-                        <button
-                            className={style.favorite}
-                            aria-label='Добавить в избранное'
-                            type='button'
-                        >
-                            <Like />
-                        </button>
-                    </div>
-                </form>
-            </Container>
-        </section>
-    )
-}
+                        <div className={style.description}>
+                            <p className={cn(style.subtitle, style.descriptionTitle)}>Описание</p>
+                            <span className={style.descriptionText}>{product.description}</span>
+                        </div>
+
+                        <div className={style.control}>
+                            <Count
+                                className={style.count}
+                                count={count}
+                                handleIncrement={handleIncrement}
+                                handleDecrement={handleDecrement}
+                            />
+
+                            <button className={style.addCart} type='submit'>
+                                В корзину
+                            </button>
+                            <button
+                                className={style.favorite}
+                                aria-label='Добавить в избранное'
+                                type='button'
+                            >
+                                <Like />
+                            </button>
+                        </div>
+                    </form>
+                </Container>
+            </section>
+            <Goods title='Вам также может понравиться' />
+        </>
+    );
+};
