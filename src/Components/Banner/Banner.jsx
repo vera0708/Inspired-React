@@ -16,16 +16,12 @@ export const Banner = ({ data }) => {
     useEffect(() => {
         if (isMobile) {
             setBgURL(`${API_URL}${data?.bg.mobile}`);
-            console.log('Мобильное разрешение');
         } else if (isTablet) {
             setBgURL(`${API_URL}${data?.bg.tablet}`);
-            console.log('Разрешение планшета');
         } else if (isLaptop) {
             setBgURL(`${API_URL}${data?.bg.laptop}`);
-            console.log('Разрешение ноутбука');
         } else {
             setBgURL(`${API_URL}${data?.bg.desktop}`);
-            console.log('Десктопное разрешение');
         }
     }, [data, isMobile, isTablet, isLaptop]);
 
