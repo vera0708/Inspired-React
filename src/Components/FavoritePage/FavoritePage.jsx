@@ -1,24 +1,26 @@
 import { useDispatch, useSelector } from "react-redux"
 import { Goods } from "../Goods/Goods"
 import { useEffect } from "react";
-import { fetchCategory, setPage } from "../../features/goodsSlice";
-import { useLocation } from "react-router-dom";
+import { fetchCategory } from "../../features/goodsSlice";
+import { usePageFromSwarchParams } from "../../hooks/usePageFromSearchParam";
 
 export const FavoritePage = () => {
     const dispatch = useDispatch();
-    const location = useLocation();
-    const searchParams = new URLSearchParams(location.search);
-    const pageURL = searchParams.get('page');
-    console.log('pageURL: ', pageURL);
-
-    useEffect(() => {
-        dispatch(setPage(pageURL))
-    }, [pageURL, dispatch])
 
     const favorites = useSelector(state => state.favorites);
 
+    const page = usePageFromSwarchParams(dispatch);
+    console.log('page: ', page);
+
     useEffect(() => {
-        dispatch(fetchCategory({ list: favorites }))
+        if (favorites) {
+            const param = { list: favorites }
+            if (page) {
+                param.page = page;
+            }
+            dispatch(fetchCategory(param))
+        }
+
     }, [favorites, dispatch]);
 
     return (
