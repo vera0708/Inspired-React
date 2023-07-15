@@ -93,13 +93,7 @@ export const ProductPage = () => {
                             <button className={style.addCart} type='submit'>
                                 В корзину
                             </button>
-                            <button
-                                className={style.favorite}
-                                aria-label='Добавить в избранное'
-                                type='button'
-                            >
-                                <BtnLike id={id} />
-                            </button>
+                            <BtnLike id={id} />
                         </div>
                     </form>
                 </Container>

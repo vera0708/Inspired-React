@@ -1,46 +1,54 @@
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
+// import { useDispatch, useSelector } from "react-redux";
 import { NavLink, useLocation } from "react-router-dom";
 import style from './Pagination.module.scss';
 // import { ReactComponent as ArrowNext } from '../../assets/arrow_right-active.svg';
 // import { ReactComponent as ArrowPrev } from '../../assets/arrow_left-noActive.svg';
 import cn from "classnames";
-import { setPage } from "../../features/goodsSlice";
+import { useEffect, useState } from "react";
 
 export const Pagination = () => {
+    const [pagePagination, setPagePagination] = useState('');
     const pathname = useLocation().pathname;
     const { page, pages } = useSelector(state => state.goods);
-    const dispatch = useDispatch();
+
+    // const dispatch = useDispatch();
+
+    useEffect(() => {
+        setPagePagination(page)
+    }, [page, setPagePagination])
 
     const handlePageChange = (newPage => {
-        dispatch(setPage(newPage));
+        setPagePagination(newPage);
     });
 
     const handlePrevPage = () => {
-        if (page > 1) {
-            handlePageChange(page - 1);
+        if (pagePagination > 1) {
+            handlePageChange(pagePagination - 1);
         }
     }
 
     const handleNextPage = () => {
-        if (page < pages) {
-            handlePageChange(page + 1);
+        if (pagePagination < pages) {
+            handlePageChange(pagePagination + 1);
         }
     }
 
     const renderPaginationItems = () => {
         const paginationItems = [];
 
-        let startPage = Math.max(1, page - 1);
-        console.log('startPage :', startPage);
-        let endPage = Math.min(startPage + 2, pages);
-        console.log('endPage :', endPage);
+        let startPage = (pagePagination === pages) && (pages >= 3)
+            ? pagePagination - 2
+            : Math.max(1, pagePagination - 1);
 
-        for (let i = startPage; i < endPage; i++) {
+        let endPage = Math.min(startPage + 2, pages);
+
+        for (let i = startPage; i <= endPage; i++) {
             paginationItems.push(
                 <li key={i} className={style.item}>
                     <NavLink
                         to={`${pathname}?page=${i}`}
-                        className={cn(style.link, i === +page ?? style.linkActive)}
+                        className={cn(style.link, i === pagePagination ?? style.linkActive)}
                         onClick={() => handlePageChange(i)}
                     >
                         {i}
@@ -52,11 +60,12 @@ export const Pagination = () => {
     }
 
     return (
+        (pages > 1) &&
         <div className={style.pagination}>
             <button
                 className={style.arrow}
                 onClick={handlePrevPage}
-                disabled={page <= 2}
+                disabled={pagePagination <= 2}
             >
                 {/* <ArrowPrev /> */}
                 &lt;
@@ -67,7 +76,7 @@ export const Pagination = () => {
             <button
                 className={style.arrow}
                 onClick={handleNextPage}
-                disabled={page >= pages - 1 || page <= 3}
+                disabled={pagePagination >= pages - 1 || pages <= 3}
             >
                 {/* <ArrowNext /> */}
                 &gt;
