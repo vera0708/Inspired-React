@@ -12,12 +12,15 @@ import { ProductSize } from './ProductSize/ProductSize';
 import { Goods } from '../Goods/Goods';
 import { fetchCategory } from '../../features/goodsSlice';
 import { BtnLike } from '../BtnLike/BtnLike';
+import { addToCart } from '../../features/cartSlice';
 
 export const ProductPage = () => {
     const dispatch = useDispatch();
     const { id } = useParams();
     const { product } = useSelector(state => state.product);
-    const { gender, category } = product;
+
+    const { gender, category, colors } = product;
+    const { colorList } = useSelector(state => state.color);
 
     const [count, setCount] = useState(1);
     const [selectedColor, setSelectedColor] = useState('');
@@ -49,12 +52,31 @@ export const ProductPage = () => {
         dispatch(fetchCategory({ gender, category, count: 4, top: true, exclude: id }))
     }, [gender, category, id, dispatch]);
 
+    useEffect(() => {
+        if (colorList?.length && colors?.length) {
+            setSelectedColor(colorList.find(color => color.id === colors[0].title))
+        }
+    }, [colorList, colors])
+
     return (
         <>
             <section className={style.card}>
                 <Container className={style.container}>
-                    <img className={style.image} src={`${API_URL}${product.pic}`} alt={`${product.title} ${product.description}`} />
-                    <form className={style.content}>
+                    <img
+                        className={style.image}
+                        src={`${API_URL}${product.pic}`}
+                        alt={`${product.title} ${product.description}`}
+                    />
+                    <form className={style.content} onSubmit={e => {
+                        e.preventDefault();
+                        dispatch(
+                            addToCart({
+                                id,
+                                color: selectedColor,
+                                size: selectedSize,
+                                count,
+                            }))
+                    }}>
                         <h2 className={style.title}>{product.title}</h2>
                         <p className={style.price}>руб {product.price}</p>
                         <div className={style.vendorCode}>
@@ -65,7 +87,7 @@ export const ProductPage = () => {
                         <div className={style.color}>
                             <p className={cn(style.subtitle, style.colorTitle)}>Цвет</p>
                             <ColorList
-                                colors={product.colors}
+                                colors={colors}
                                 selectedColor={selectedColor}
                                 handleColorChange={handleColorChange}
                             />
