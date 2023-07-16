@@ -3,7 +3,7 @@ import style from './CartItem.module.scss';
 import { API_URL } from '../../../../const';
 import cn from 'classnames';
 import { Count } from '../../../Count/Count';
-import { addToCart } from '../../../../features/cartSlice';
+import { addToCart, removeFromCart } from '../../../../features/cartSlice';
 
 
 export const CartItem = ({ id, color, size, count, goodsList }) => {
@@ -13,6 +13,10 @@ export const CartItem = ({ id, color, size, count, goodsList }) => {
 
     const handleCountChange = (count) => {
         dispatch(addToCart({ id, color, size, count }))
+    }
+
+    const handleRemoveItem = () => {
+        dispatch(removeFromCart({ id, color, size }))
     }
 
     return (
@@ -42,7 +46,12 @@ export const CartItem = ({ id, color, size, count, goodsList }) => {
                     <div className={style.sizeItem}>{size}</div>
                 </div>
             </div>
-            <button className={style.del} aria-label='Удалить товар из корзины'></button>
+            <button
+                className={style.del}
+                aria-label='Удалить товар из корзины'
+                onClick={handleRemoveItem}
+            >
+            </button>
             <Count
                 className={style.count}
                 count={count}
