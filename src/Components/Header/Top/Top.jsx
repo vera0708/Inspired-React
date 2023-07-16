@@ -8,8 +8,14 @@ import logo from '/src/assets/logo.svg';
 import { NavLink } from "react-router-dom";
 import { useSelector } from "react-redux";
 
-export const Top = () => {
-    const { countItems } = useSelector(state => state.cart)
+export const Top = ({ setOpenSearch, openSearch }) => {
+    const { countItems } = useSelector(state => state.cart);
+
+    const handleOpenSearch = () => {
+        setOpenSearch(!openSearch)
+    }
+
+
     return (
         <div className={style.top}>
             <Container className={style.container}>
@@ -20,7 +26,10 @@ export const Top = () => {
                 <div className={style.navigation}>
                     <ul className={style.navList}>
                         <li className={style.navItem}>
-                            <button className={style.link}>
+                            <button
+                                className={style.link}
+                                onClick={handleOpenSearch}
+                            >
                                 <SearchSvg />
                             </button>
                         </li>
