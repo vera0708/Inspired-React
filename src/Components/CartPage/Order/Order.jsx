@@ -2,28 +2,42 @@ import { ErrorMessage, Field, Form, Formik } from "formik";
 import { Container } from "../../Layout/Container/Container"
 import style from './Order.module.scss';
 import { PatternFormat } from "react-number-format";
+import * as Yup from 'yup'
 
 export const Order = ({ cartItems }) => {
     const handleSubmitOrder = (values) => {
         console.log({ cartItems, values })
     }
 
-    const validationSchema = () => {
-
-    }
+    const validationSchema = Yup.object({
+        fio: Yup.string().required('Заполните ФИО'),
+        address: Yup.string().test(
+            'deliveryTest',
+            'Введите адрес доставки',
+            function (value) {
+                return this.parent.delivery === 'delivery' ? !!value : true;
+            }
+        ),
+        phone: Yup.string()
+            .required('Введите номер телефона')
+            .matches(/^\+\d{1}\(\d{3}\)\-\d{3}\-\d{4}$/, 'Некорректный номер телефона'),
+        email: Yup.string()
+            .email('Некорректный формат email')
+            .required('Введите адрес электронной почты'),
+        delivery: Yup.string().required('Выберите способ доставки'),
+    });
 
     return (
         <section>
             <Container>
                 <h2 className={style.title}>Оформление заказа</h2>
-
                 <Formik
                     initialValues={{
-                        fio: 'Vera',
+                        fio: '',
                         address: '',
                         phone: '',
                         email: '',
-                        delivery: 'self',
+                        delivery: '',
                     }}
                     onSubmit={handleSubmitOrder}
                     validationSchema={validationSchema}
