@@ -6,16 +6,16 @@ import { ReactComponent as CartSvg } from '../../../assets/cart.svg';
 import { ReactComponent as SearchSvg } from '../../../assets/search.svg';
 import logo from '/src/assets/logo.svg';
 import { NavLink } from "react-router-dom";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { toggleSearch } from "../../../features/searchSlice.js";
 
-export const Top = ({ setOpenSearch, openSearch }) => {
+export const Top = () => {
     const { countItems } = useSelector(state => state.cart);
+    const dispatch = useDispatch();
 
     const handleOpenSearch = () => {
-        setOpenSearch(!openSearch)
+        dispatch(toggleSearch())
     }
-
-
     return (
         <div className={style.top}>
             <Container className={style.container}>
