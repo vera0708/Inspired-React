@@ -19,7 +19,7 @@ export const CartItem = ({ id, color, size, count, goodsList }) => {
         <article className={style.item}>
             <img
                 src={`${API_URL}${item?.pic}`}
-                className={style.image} alt={item.title}
+                className={style.image} alt={item?.title}
             />
             <div className={style.content} >
                 <h3 className={style.title}>{item?.title} </h3>

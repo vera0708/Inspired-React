@@ -3,7 +3,10 @@ import style from './Cart.module.scss';
 import { CartItem } from './CartItem/CartItem';
 
 export const Cart = ({ cartItems, goodsList }) => {
-    const totalPrice = 0;
+    let totalPrice = 0;
+    goodsList.map(goods => (
+        totalPrice += goods.price
+    ))
 
     return (
         <section className={style.cart}>
