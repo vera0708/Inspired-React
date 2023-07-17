@@ -16,7 +16,7 @@ const rootReducer = combineReducers({
     favorites: favoritesReducer,
     cart: cartReducer,
     search: searchReducer,
-    status: statusReducer,
+    statusServer: statusReducer,
 });
 
 export default rootReducer
