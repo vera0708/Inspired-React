@@ -4,10 +4,11 @@ import { Order } from "./Order/Order"
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchAll } from "../../features/goodsSlice";
 import { OrderModal } from "./OrderModal/OrderModal";
+import { PreLoader } from "../Preloader/Preloader";
 
 export const CartPage = () => {
     const { cartItems, countItems } = useSelector(state => state.cart);
-    const { goodsList } = useSelector(state => state.goods);
+    const { goodsList, status } = useSelector(state => state.goods);
     const { orderStatus } = useSelector(state => state.cart);
 
     const [count, setCount] = useState(0);
@@ -20,10 +21,10 @@ export const CartPage = () => {
         }
     }, [cartItems, count, countItems, dispatch])
 
-    return (
+    return status === 'loading' ? (<PreLoader />) : (
         <>
             <Cart cartItems={cartItems} goodsList={goodsList} />
-            {goodsList.length ? <Order cartItems={cartItems} /> : ''}
+            {cartItems.length ? <Order cartItems={cartItems} /> : ''}
             {orderStatus === 'successed' && <OrderModal />}
         </>
     )
