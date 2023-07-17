@@ -2,7 +2,7 @@ import { ErrorMessage, Field, Form, Formik } from "formik";
 import { Container } from "../../Layout/Container/Container"
 import style from './Order.module.scss';
 import { PatternFormat } from "react-number-format";
-import * as Yup from 'yup'
+import * as Yup from 'yup';
 
 export const Order = ({ cartItems }) => {
     const handleSubmitOrder = (values) => {
