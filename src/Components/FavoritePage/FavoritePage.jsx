@@ -12,7 +12,6 @@ export const FavoritePage = () => {
     const favorites = useSelector(state => state.favorites);
 
     const page = usePageFromSearchParams(dispatch);
-    console.log('page:', page);
 
     useEffect(() => {
         if (favorites) {
